@@ -6,19 +6,17 @@
         <artifactId>soothsayer-parent</artifactId>
         <groupId>com.soothsayer</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>soothsayer-authn</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>soothsayer-core</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.soothsayer</groupId>
-            <artifactId>soothsayer-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.58</version>
         </dependency>
-    </dependencies>
 
+    </dependencies>
 </project>
