@@ -1,4 +1,4 @@
-package coms.soothsayer.core.utils;
+package com.soothsayer.core.utils;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;

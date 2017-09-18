@@ -1,8 +1,8 @@
 package com.soothsayer.authn;
 
 import com.soothsayer.authn.dao.user.UserDAO;
-import coms.soothsayer.core.entities.user.UserEntity;
-import coms.soothsayer.core.utils.AESEncryptionUtil;
+import com.soothsayer.core.entities.user.UserEntity;
+import com.soothsayer.core.utils.AESEncryptionUtil;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;

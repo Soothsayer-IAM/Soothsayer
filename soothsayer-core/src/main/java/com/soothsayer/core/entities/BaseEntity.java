@@ -1,4 +1,4 @@
-package coms.soothsayer.core.entities;
+package com.soothsayer.core.entities;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

@@ -1,6 +1,6 @@
-package coms.soothsayer.core.entities.user;
+package com.soothsayer.core.entities.user;
 
-import coms.soothsayer.core.entities.BaseEntity;
+import com.soothsayer.core.entities.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.joda.time.DateTime;
