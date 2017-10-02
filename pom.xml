@@ -15,6 +15,7 @@
         <module>soothsayer-authn</module>
         <module>soothsayer-core</module>
         <module>soothsayer-audit</module>
+        <module>soothsayer-eureka</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

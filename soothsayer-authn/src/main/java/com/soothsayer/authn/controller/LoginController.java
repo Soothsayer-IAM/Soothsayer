@@ -1,6 +1,7 @@
 package com.soothsayer.authn.controller;
 
 import com.soothsayer.authn.dto.user.UserInfoResource;
+import com.soothsayer.authn.params.Constants;
 import com.soothsayer.authn.params.UserPwdCredential;
 import com.soothsayer.authn.service.LoginService;
 import com.soothsayer.core.entities.user.UserEntity;
@@ -31,7 +32,7 @@ public class LoginController {
     public void sessionRedirect(@RequestParam String token, @RequestParam String redirectUrl) throws IOException {
         UserEntity userEntity = loginService.exchangeUserInfo(token);
         if (userEntity != null) {
-            context.getSession().setAttribute("LOGIN-USER", userEntity);
+            context.getSession().setAttribute(Constants.LOGIN_SESSION_USER, userEntity);
             context.redirect(redirectUrl);
         } else {
             context.redirect(String.format("/?fromUrl=%s", redirectUrl));

@@ -11,6 +11,6 @@ public class AuditController {
 
     @GetMapping("/checkuser/{id}")
     public ResponseEntity<String> checkUser(@PathVariable String id) {
-        return new ResponseEntity<String>(id, HttpStatus.OK);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }
