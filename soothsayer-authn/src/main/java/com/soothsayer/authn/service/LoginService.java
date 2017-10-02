@@ -4,27 +4,30 @@ import com.soothsayer.authn.dto.user.UserInfoResource;
 import com.soothsayer.authn.params.UserPwdCredential;
 import com.soothsayer.authn.service.authn.Authenticator;
 import com.soothsayer.authn.service.authn.impl.PwdAuthenticator;
+import com.soothsayer.authn.service.user.UserService;
 import com.soothsayer.core.config.RedisConfiguration;
 import com.soothsayer.core.entities.user.UserEntity;
 import com.soothsayer.core.utils.CodecUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Service
 public class LoginService {
-
-    private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
 
     @Autowired
     private RedisConfiguration.RedisManager redisManager;
 
     @Autowired
     private PwdAuthenticator pwdAuthenticator;
+
+    @Autowired
+    private UserService userService;
 
     public UserInfoResource loginWithPwd(UserPwdCredential credential) {
         //TODO:检查验证码是否正确 只有密码登录需要检查
@@ -49,8 +52,15 @@ public class LoginService {
      */
     private <T> UserEntity handleLogin(Authenticator<T> authenticator, T credential) {
         UserEntity userEntity = authenticator.authn(credential);
-        //TODO:用户状态检查，远程调用服务
-        return userEntity;
+        ResponseEntity<String> result = userService.checkUser(userEntity.getId());
+        if (result.getStatusCode().is2xxSuccessful()) {
+            return userEntity;
+        } else {
+            //TODO:用户状态检查
+            log.error("Check User Failed");
+            return null;
+        }
+
     }
 
     public UserEntity exchangeUserInfo(String token) {

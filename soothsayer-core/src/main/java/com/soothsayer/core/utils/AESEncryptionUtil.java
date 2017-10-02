@@ -1,8 +1,7 @@
 package com.soothsayer.core.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -11,11 +10,11 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.Security;
 import java.util.Base64;
 
+@Slf4j
 public class AESEncryptionUtil {
 
     private static final String ALGORITHM = "AES/ECB/PKCS7Padding";
-    private static final String KEY_ALGORITHM="AES";
-    private static final Logger logger = LoggerFactory.getLogger(AESEncryptionUtil.class);
+    private static final String KEY_ALGORITHM = "AES";
 
     static {
         Security.addProvider(new BouncyCastleProvider());
@@ -29,8 +28,8 @@ public class AESEncryptionUtil {
             cipher.init(Cipher.ENCRYPT_MODE, keySpec);
             result = Base64.getEncoder().encodeToString(cipher.doFinal(src.getBytes("UTF-8")));
         } catch (Exception e) {
-            logger.error("AES加密出错");
-            logger.debug(e.getMessage());
+            log.error("AES加密出错");
+            log.debug(e.getMessage());
             e.printStackTrace();
         }
         return result;
@@ -46,16 +45,16 @@ public class AESEncryptionUtil {
             byte[] decoded = cipher.doFinal(src.getBytes("UTF-8"));
             result = new String(decoded, "UTF-8");
         } catch (Exception e) {
-            logger.error("AES解密出错");
+            log.error("AES解密出错");
             e.printStackTrace();
         }
         return result;
     }
 
     public static String initKey() throws Exception {
-        KeyGenerator kg= KeyGenerator.getInstance(KEY_ALGORITHM, "BC");
+        KeyGenerator kg = KeyGenerator.getInstance(KEY_ALGORITHM, "BC");
         kg.init(256);
-        SecretKey secretKey=kg.generateKey();
+        SecretKey secretKey = kg.generateKey();
         return Base64.getEncoder().encodeToString(secretKey.getEncoded());
     }
 

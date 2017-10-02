@@ -9,4 +9,18 @@ spring:
   redis:
     host: localhost
     port: 6379
+  application:
+    name: soothsayer-authn
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+
+
+
+services:
+  usermgt: "soothsayer-usermgt"
+  audit: "soothsayer-audit"
+  mfa: "soothsayer-mfa"
 
