@@ -52,6 +52,7 @@ public class LoginService {
      */
     private <T> UserEntity handleLogin(Authenticator<T> authenticator, T credential) {
         UserEntity userEntity = authenticator.authn(credential);
+        //TODO:1. 用户状态检查 2. MFA检查
         ResponseEntity<String> result = userService.checkUser(userEntity.getId());
         if (result.getStatusCode().is2xxSuccessful()) {
             return userEntity;

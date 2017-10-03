@@ -5,7 +5,6 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 public class SoothSayerError {
@@ -14,7 +13,6 @@ public class SoothSayerError {
     private LocalDateTime timestamp;
     private String message;
     private String messageDetails;
-    private List<SoothSayerSubError> subErrors;
 
     private SoothSayerError() {
         this.timestamp = LocalDateTime.now();

@@ -1,0 +1,21 @@
+{
+  "name": "web-login",
+  "description": "A Vue.js project",
+  "main": "",
+  "authors": [
+    "Rory Gao <roryblucky@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Soothsayer-IAM/Soothsayer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/assets/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
