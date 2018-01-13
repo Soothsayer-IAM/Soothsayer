@@ -6,9 +6,10 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
 @EnableEurekaServer
-public class SoothSayerEurekaServer {
+public class SoothSayerRegistryCenter {
 
+    //TODO: fine tune service configuration
     public static void main(String[] args) {
-        SpringApplication.run(SoothSayerEurekaServer.class, args);
+        SpringApplication.run(SoothSayerRegistryCenter.class, args);
     }
 }
