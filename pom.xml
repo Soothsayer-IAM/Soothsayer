@@ -16,7 +16,7 @@
         <module>soothsayer-core</module>
         <module>soothsayer-audit</module>
         <module>soothsayer-registry</module>
-        <module>soothsayer-usermgt</module>
+        <module>soothsayer-admin</module>
         <module>soothsayer-mfa</module>
     </modules>
     <parent>

@@ -11,16 +11,17 @@ spring:
     port: 6379
   application:
     name: soothsayer-authn
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${server.port}
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 5
+security:
+  basic:
+    enabled: false
+  oauth2:
+    authorization:
+      realm: soothsayer/iam
+    resource:
+      id: soothsayer-api
+      filter-order: 3
+logging:
+  level.org.springframework.security: DEBUG
 
 
-
-services:
-  usermgt: "soothsayer-usermgt"
-  audit: "soothsayer-audit"
-  mfa: "soothsayer-mfa"
 
