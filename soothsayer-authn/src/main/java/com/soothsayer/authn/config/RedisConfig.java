@@ -1,5 +1,6 @@
-package com.soothsayer.core.config;
+package com.soothsayer.authn.config;
 
+import com.soothsayer.core.utils.RedisManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,10 +9,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import java.util.concurrent.TimeUnit;
-
 @Configuration
-public class RedisConfiguration {
+public class RedisConfig {
 
     @Autowired
     private RedisConnectionFactory connectionFactory;
@@ -28,28 +27,8 @@ public class RedisConfiguration {
     }
 
     @Bean
-    public RedisManager redisManager(RedisTemplate<String, Object> redisTemplate) {
-        return new RedisManager(redisTemplate);
-    }
-
-    public class RedisManager {
-
-        private RedisTemplate<String, Object> redisTemplate;
-
-        public RedisManager(RedisTemplate<String, Object> redisTemplate) {
-            this.redisTemplate = redisTemplate;
-        }
-
-        public void setValue(String k, Object v, long time, TimeUnit timeUnit) {
-            redisTemplate.opsForValue().set(k, v, time, timeUnit);
-        }
-
-        public Object getValue(String k) {
-            return redisTemplate.opsForValue().get(k);
-        }
-        public void removeValue(String k) {
-            redisTemplate.delete(k);
-        }
+    public RedisManager redisManager() {
+        return new RedisManager(redisTemplate());
     }
 
 }
